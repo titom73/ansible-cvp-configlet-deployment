@@ -1,4 +1,4 @@
-image: "inetsix/docker-ansible:2.7"
+image: "inetsix/docker-ansible:latest"
 
 stages:
   - validate
