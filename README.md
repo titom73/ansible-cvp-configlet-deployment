@@ -1,10 +1,19 @@
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Demo to build config with Ansible and deploy with CVP](#demo-to-build-config-with-ansible-and-deploy-with-cvp)
+    - [Install requirements](#install-requirements)
+    - [Demo step by step](#demo-step-by-step)
+        - [Configure your environment](#configure-your-environment)
+        - [Edit data](#edit-data)
+        - [Build phase](#build-phase)
+        - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
+        - [1.2.5. Check Result](#125-check-result)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Demo to build config with Ansible and deploy with CVP
-
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-
-# 1. Description
 
 This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility.
 
@@ -21,7 +30,7 @@ Ansible content will do 3 different tasks:
 
 Once Ansible has generated content, [`cvp-configlet-uploader`](https://github.com/titom73/configlet-cvp-uploader) has to be use to deploy `configlet` and create a `change-control`
 
-## 1.1. Install requirements
+## Install requirements
 
 To use this demo, you have to install requirements with following commands:
 
@@ -42,11 +51,11 @@ $ pip install git+https://github.com/titom73/configlet-cvp-uploader.git
 !! As everything is based on ATD, it is recommended to use an intstance as everything has been packaged such as device name, groups, and content
 
 
-## 1.2. Demo step by step
+## Demo step by step
 
 This demo will create a list of vlans on a set of leaf devices.
 
-### 1.2.1. Configure your environment
+### Configure your environment
 
 it is required to configure some variables first to create connection to CVP server. All these elements are configured in file [env.settings](env.settings)
 
@@ -65,7 +74,7 @@ CVP Uploader configured with
  - username: arista
 ```
 
-### 1.2.2. Edit data
+### Edit data
 
 Information about vlans and devices to use for deployment is defined in [group_vars/leaf](group_vars/leaf) folder. 
 
@@ -89,7 +98,7 @@ Data structure we use to define vlans is the following:
 
 > You can use vlans already configured or change them to match your demo.
 
-### 1.2.3. Build phase 
+### Build phase 
 
 Build phase is a basic ansible playbook to run:
 
@@ -132,7 +141,7 @@ $ tree -L 2
 ├── env.settings
 ```
 
-### 1.2.4. Deploy Configlet and change-control
+### Deploy Configlet and change-control
 
 Once content has been created, you can use cvp-configlet-uploader to deploy content to CloudVision:
 
@@ -173,7 +182,6 @@ $ $ cvp-configlet-uploader -j configlets/customers.vlans.actions.json
 2019-04-08 13:01:33 INFO     !CVP informs us that change-control creation is success (id 23)
 2019-04-08 13:01:33 INFO     Wait 10 sec before next action
 
-$
 ```
 
 This command will do following actions:
@@ -188,8 +196,26 @@ This command will do following actions:
 
 After CVP deployment, you can connect to your CVP server to get result
 
-- Configlet: `https://${{CVP_HOST}}/web/#/configlet`
-- Tasks: `https://${{CVP_HOST}}/web/#/task`
-- Change Control: `https://${{CVP_HOST}}/web/#/changecontrol`
+- __Configlet__: `https://${{CVP_HOST}}/web/#/configlet`
+- __Tasks__: `https://${{CVP_HOST}}/web/#/task`
+- __Change Control__: `https://${{CVP_HOST}}/web/#/changecontrol`
 
 And finally, execute change-control manually
+
+## Demo with Continuous Integration
+
+Demo can be run with a CI/CD approach with no action from local laptop using any runners like gitlab-runners, travisci or Jenkins.
+
+In this repository, we will provide configuration for gitlab-runners but it can be replicated on any 3rd CI tool.
+
+
+1. Fork the repository in your namespace
+2. Rename file `gitlab-ci.yml` to `.gitlab-ci.yml`
+3. Commit your change
+4. Go to __[settings/ci_cd](settings/ci_cd)__ in your project and configure __Environment Variables__:
+  - __CVP_HOST__= *< YOUR CVP IP Address >*
+  - __CVP_PORT__ = *443*
+  - __CVP_PROTO__ = *https*
+  - __CVP_USER__ = *arista*
+  - __CVP_PASS__ = *arista*
+5. Create and run a pipeline under __[pipelines](pipelines/)__
