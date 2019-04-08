@@ -2,6 +2,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Demo to build config with Ansible and deploy with CVP](#demo-to-build-config-with-ansible-and-deploy-with-cvp)
     - [Install requirements](#install-requirements)
     - [Demo step by step](#demo-step-by-step)
@@ -11,6 +12,9 @@
         - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
         - [1.2.5. Check Result](#125-check-result)
     - [Demo with Continuous Integration](#demo-with-continuous-integration)
+    - [License](#license)
+    - [Ask question or report issue](#ask-question-or-report-issue)
+    - [Contribute](#contribute)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -214,9 +218,7 @@ In this repository, we will provide configuration for gitlab-runners but it can 
 
 
 1. Fork the repository in your namespace
-2. Rename file `gitlab-ci.yml` to `.gitlab-ci.yml`
-3. Commit your change
-4. Go to __settings/ci_cd__ in your project and configure __Environment Variables__:
+2. Go to __settings/ci_cd__ in your project and configure __Environment Variables__:
   - __CVP_HOST__= *< YOUR CVP IP Address >*
   - __CVP_PORT__ = *443*
   - __CVP_PROTO__ = *https*
@@ -225,7 +227,7 @@ In this repository, we will provide configuration for gitlab-runners but it can 
 
 ![Environment Variables](data/ci-cd-env-vars.png)
 
-5. Create and run a pipeline under __pipelines__
+3. Create and run a pipeline under __pipelines__
 
 ![Create Pipeline](data/pipeline.png)
 
@@ -236,6 +238,18 @@ Then you can monitor workflow execution. This workflow is a multi-stage approach
 
 ![Workflow](data/workflow.png)
 
-If all green, you can connect to CVP and check your change control
+4. If all tasks are green, you can connect to CVP and check your change control
 
 ![CloudVision Change Control](data/cvp.png)
+
+## License
+
+Project is published under [BSD License](LICENSE).
+
+## Ask question or report issue
+
+Please open an issue on Github this is the fastest way to get an answer.
+
+## Contribute
+
+Contributing pull requests are gladly welcomed for this repository. If you are planning a big change, please start a discussion first to make sure we’ll be able to merge it.
