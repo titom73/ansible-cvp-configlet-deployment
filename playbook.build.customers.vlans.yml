@@ -1,0 +1,28 @@
+- name: Build 
+  hosts: [fabric]
+  connection: local
+  gather_facts: no
+  tags: cleanup
+  tasks:
+    - name: remove host build temp directory
+      file: 
+        path: "configlets" 
+        state: absent 
+        mode: 0755
+      delegate_to: localhost
+    - name: create host build temp directory
+      file: 
+        path: "configlets" 
+        state: directory
+        mode: 0755
+      delegate_to: localhost
+
+
+- name: Build Configlets
+  hosts: leaf
+  connection: local
+  gather_facts: no
+  tags: generate
+  run_once: true
+  roles:
+    - configlet.customers.vlans

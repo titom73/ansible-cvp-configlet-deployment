@@ -1,0 +1,11 @@
+---
+# tasks file for configlet.customers.vlans
+- name: Generate Configlet for customers VLANs.
+  template:
+    src: template.configlet.customers.vlans.j2
+    dest: "configlets/configlet.customers.vlans.conf"
+
+- name: Build JSON to deploy configlet
+  template:
+    src: template.actions.json.j2
+    dest: "configlets/customers.vlans.actions.json"

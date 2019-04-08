@@ -1,0 +1,21 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+[
+    {
+        "name": "Customers VLANs configlet",
+        "type": "configlet",
+        "action": "add",
+        "configlet": "configlet/configlet.customers.vlans.conf",
+        "apply": false,
+        "devices": [
+            {% for device in customers.devices %}
+            "{{ device }}"{{ "," if not loop.last else "" }}
+            {% endfor %}
+        ]
+    },
+    {
+        "name": "apply-customers-vlans-{{ lookup('pipe', 'date +\"%Y%m%d%H%M\"')  }}",
+        "type": "change-control",
+        "snapid": "snapshotTemplate_9_4694793526491",
+        "apply": false
+    }
+]

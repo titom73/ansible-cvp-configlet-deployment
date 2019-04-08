@@ -1,0 +1,14 @@
+# Created by https://www.gitignore.io/api/ansible,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=ansible,visualstudiocode
+
+### Ansible ###
+*.retry
+
+### VisualStudioCode ###
+.vscode/*
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/ansible,visualstudiocode
