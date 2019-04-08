@@ -29,6 +29,8 @@ This demo has been built using these requirements:
 - [CVP Configlet Uploader](https://github.com/titom73/configlet-cvp-uploader) to deploy configlet on CVP.
 - Arista Demo Cloud ATD to provide Cloudvision server and EOS endpoints.
 
+> In this demo, __Ansible__ only provides a basic jinja2 rendering with one group and very basic content. So you can basically change __ansible__ content by any tools / __python__ scripts to generate your content as long as output is similar to what we describe below.
+
 Ansible content will do 3 different tasks:
 - Create configlet with vlans to configure.
 - Create a `JSON` file to deploy this configlet (assuming it is a new configlet).
