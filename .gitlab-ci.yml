@@ -1,4 +1,4 @@
-image: "python:2.7.15-slim-jessie"
+image: "inetsix/docker-ansible:2.7"
 
 stages:
   - validate
