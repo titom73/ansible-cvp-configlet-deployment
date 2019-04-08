@@ -1,0 +1,36 @@
+image: "python:2.7.15-slim-jessie"
+
+stages:
+  - validate
+  - deploy
+
+SYNTAX_CHECK:
+  stage: validate
+  before_script:
+    - pip install -r requirements.txt
+    - chmod -R 755 .
+  script:
+    - echo $PWD 
+    - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini --syntax-check
+  only:
+    - master
+
+DEPLOY_VLANS:
+  stage: deploy
+  before_script:
+    - pip install -r requirements.txt
+    - pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
+    - chmod -R 755 .
+  script:
+    - echo $PWD 
+    - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
+    - cvp-configlet-uploader -j configlets/customers.vlans.actions.json
+  only:
+    changes:
+    - group_vars/leaf/vlan_customers.yaml
+  artifacts:
+    name: "CUSTOMERS-VLANS-DEPLOY-$CI_COMMIT_REF_NAME"
+    paths:
+      - configlets/
+      - group_vars/

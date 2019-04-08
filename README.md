@@ -212,10 +212,10 @@ In this repository, we will provide configuration for gitlab-runners but it can 
 1. Fork the repository in your namespace
 2. Rename file `gitlab-ci.yml` to `.gitlab-ci.yml`
 3. Commit your change
-4. Go to __[settings/ci_cd](settings/ci_cd)__ in your project and configure __Environment Variables__:
+4. Go to __settings/ci_cd__ in your project and configure __Environment Variables__:
   - __CVP_HOST__= *< YOUR CVP IP Address >*
   - __CVP_PORT__ = *443*
   - __CVP_PROTO__ = *https*
   - __CVP_USER__ = *arista*
   - __CVP_PASS__ = *arista*
-5. Create and run a pipeline under __[pipelines](pipelines/)__
+5. Create and run a pipeline under __pipelines__
