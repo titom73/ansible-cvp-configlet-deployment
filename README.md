@@ -10,12 +10,15 @@
         - [Build phase](#build-phase)
         - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
         - [1.2.5. Check Result](#125-check-result)
+    - [Demo with Continuous Integration](#demo-with-continuous-integration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Demo to build config with Ansible and deploy with CVP
 
 This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility.
+
+![High level Workflow](data/intro.png)
 
 This demo has been built using these requirements:
 
@@ -47,8 +50,8 @@ $ pip install git+https://github.com/aristanetworks/cvprac.git@develop
 $ pip install git+https://github.com/titom73/configlet-cvp-uploader.git
 ```
 
-!! In the meantime, you have to build your own topology with a CVP server or rely on an Test Drive. 
-!! As everything is based on ATD, it is recommended to use an intstance as everything has been packaged such as device name, groups, and content
+> In the meantime, you have to build your own topology with a CVP server or rely on an Test Drive. 
+> As everything is based on ATD, it is recommended to use an intstance as everything has been packaged such as device name, groups, and content
 
 
 ## Demo step by step
@@ -150,7 +153,8 @@ $ $ cvp-configlet-uploader -j configlets/customers.vlans.actions.json
 
 --------------------
 
-2019-04-08 13:01:16 INFO     configlet Customers VLANs configlet is going to be created configlets/configlet.customers.vlans.conf
+2019-04-08 13:01:16 INFO     configlet Customers VLANs configlet is going to be\
+  created configlets/configlet.customers.vlans.conf
 2019-04-08 13:01:17 INFO     Connected to 13.56.254.40
 2019-04-08 13:01:17 INFO     *************
 2019-04-08 13:01:17 INFO     Start working with configlets/configlet.customers.vlans.conf
@@ -218,4 +222,20 @@ In this repository, we will provide configuration for gitlab-runners but it can 
   - __CVP_PROTO__ = *https*
   - __CVP_USER__ = *arista*
   - __CVP_PASS__ = *arista*
+
+![Environment Variables](data/ci-cd-env-vars.png)
+
 5. Create and run a pipeline under __pipelines__
+
+![Create Pipeline](data/pipeline.png)
+
+Then you can monitor workflow execution. This workflow is a multi-stage approach with following stages:
+
+- Validation: Just check ansible code to be sure there is no typo
+- Deploy: Execute Ansible and Python to deploy configlet.
+
+![Workflow](data/workflow.png)
+
+If all green, you can connect to CVP and check your change control
+
+![CloudVision Change Control](data/cvp.png)
