@@ -2,19 +2,18 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [Demo to build config with Ansible and deploy with CVP](#demo-to-build-config-with-ansible-and-deploy-with-cvp)
-    - [Install requirements](#install-requirements)
-    - [Demo step by step](#demo-step-by-step)
-        - [Configure your environment](#configure-your-environment)
-        - [Edit data](#edit-data)
-        - [Build phase](#build-phase)
-        - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
-        - [1.2.5. Check Result](#125-check-result)
-    - [Demo with Continuous Integration](#demo-with-continuous-integration)
-    - [License](#license)
-    - [Ask question or report issue](#ask-question-or-report-issue)
-    - [Contribute](#contribute)
+- [Install requirements](#install-requirements)
+- [Demo step by step](#demo-step-by-step)
+    - [Configure your environment](#configure-your-environment)
+    - [Edit data](#edit-data)
+    - [Build phase](#build-phase)
+    - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
+    - [Check Result](#check-result)
+    - [(Optional) Rollback changes](#optional-rollback-changes)
+- [Demo with Continuous Integration](#demo-with-continuous-integration)
+- [License](#license)
+- [Ask question or report issue](#ask-question-or-report-issue)
+- [Contribute](#contribute)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -153,7 +152,7 @@ $ tree -L 2
 Once content has been created, you can use cvp-configlet-uploader to deploy content to CloudVision:
 
 ```shell
-$ $ cvp-configlet-uploader -j configlets/customers.vlans.actions.json   
+$ cvp-configlet-uploader -j configlets/customers.vlans.actions.json   
 
 --------------------
 
@@ -200,7 +199,7 @@ This command will do following actions:
 
 > By default this command do not execute any change-control nor schedule change-control.
 
-### 1.2.5. Check Result
+### Check Result
 
 After CVP deployment, you can connect to your CVP server to get result
 
@@ -209,6 +208,18 @@ After CVP deployment, you can connect to your CVP server to get result
 - __Change Control__: `https://${{CVP_HOST}}/web/#/changecontrol`
 
 And finally, execute change-control manually
+
+![CloudVision Change Control](data/cvp.png)
+
+### (Optional) Rollback changes
+
+Ansible generate a file to create a rollback to instruct CVP to delete configlet and create a change control to remove this configlet output from devices.
+
+Just use following command:
+
+```
+$ cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
+```
 
 ## Demo with Continuous Integration
 
