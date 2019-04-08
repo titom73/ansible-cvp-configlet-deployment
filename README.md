@@ -240,6 +240,8 @@ Then you can monitor workflow execution. This workflow is a multi-stage approach
 
 4. If all tasks are green, you can connect to CVP and check your change control
 
+![CloudVision Change Control Creation](data/result.png)
+
 ![CloudVision Change Control](data/cvp.png)
 
 ## License
