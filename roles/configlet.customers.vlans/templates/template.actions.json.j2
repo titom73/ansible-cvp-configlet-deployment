@@ -4,7 +4,7 @@
         "name": "Customers VLANs configlet",
         "type": "configlet",
         "action": "add",
-        "configlet": "configlet/configlet.customers.vlans.conf",
+        "configlet": "configlets/configlet.customers.vlans.conf",
         "apply": false,
         "devices": [
             {% for device in customers.devices %}
@@ -13,9 +13,13 @@
         ]
     },
     {
-        "name": "apply-customers-vlans-{{ lookup('pipe', 'date +\"%Y%m%d%H%M\"')  }}",
+        "name": "vlans-{{ lookup('pipe', 'date +\"%d%H%M\"')  }}",
         "type": "change-control",
         "snapid": "snapshotTemplate_9_4694793526491",
+        {% if lookup('env','CVP_CC_APPLY') is defined and lookup('env','CVP_CC_APPLY') == 'true' %}
+        "apply": true
+        {% else %}
         "apply": false
+        {% endif %}
     }
 ]

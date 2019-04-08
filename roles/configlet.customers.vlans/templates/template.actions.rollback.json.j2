@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Delete CVP Configlet VLANsTEMP",
+        "type": "configlet",
+        "action": "delete",
+        "configlet": "../configlets/configlet.customers.vlans.conf",
+        "apply": true,
+        "devices": [
+            {% for device in customers.devices %}
+            "{{ device }}"{{ "," if not loop.last else "" }}
+            {% endfor %}
+        ]
+    },
+    {
+        "name": "rollback-vlans-{{ lookup('pipe', 'date +\"%d%H%M\"')  }}",
+        "type": "change-control",
+        "snapid": "snapshotTemplate_9_4694793526491",
+        "apply": true
+    }
+]

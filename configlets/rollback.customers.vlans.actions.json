@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Delete CVP Configlet VLANsTEMP",
+        "type": "configlet",
+        "action": "delete",
+        "configlet": "../configlets/configlet.customers.vlans.conf",
+        "apply": true,
+        "devices": [
+                        "leaf1",
+                        "leaf2",
+                        "leaf3"
+                    ]
+    },
+    {
+        "name": "rollback-vlans-081306",
+        "type": "change-control",
+        "snapid": "snapshotTemplate_9_4694793526491",
+        "apply": true
+    }
+]

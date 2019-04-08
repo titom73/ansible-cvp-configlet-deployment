@@ -1,8 +1,9 @@
 - name: Build 
-  hosts: [fabric]
+  hosts: all
   connection: local
   gather_facts: no
   tags: cleanup
+  run_once: true
   tasks:
     - name: remove host build temp directory
       file: 

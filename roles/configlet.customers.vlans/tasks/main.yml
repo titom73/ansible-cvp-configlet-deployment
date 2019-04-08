@@ -9,3 +9,8 @@
   template:
     src: template.actions.json.j2
     dest: "configlets/customers.vlans.actions.json"
+
+- name: Build JSON to rollback configlet
+  template:
+    src: template.actions.rollback.json.j2
+    dest: "configlets/rollback.customers.vlans.actions.json"

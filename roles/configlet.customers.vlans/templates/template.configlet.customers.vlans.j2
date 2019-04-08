@@ -1,6 +1,7 @@
 {% for cname, customer in customers.dict.iteritems() %}
 {% for vlan in customer.vlans %}
-vlans {{vlan}}
+vlan {{vlan}}
+   name {{cname}}_{{vlan}}
 !
 {% endfor %}
 {% endfor %}
