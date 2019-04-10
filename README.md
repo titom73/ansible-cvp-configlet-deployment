@@ -253,8 +253,8 @@ In this repository, we will provide configuration for gitlab-runners but it can 
 
   __Optional Entries__
   - __CVP_CC_APPLY__= *true*
-  - __CVP_CC_TZ__= *Europe/Paris* (or any other suitable timezone)
-  - __CVP_CC_COUNTRY__= *FR* (or any other country code that suit you)
+  - __CVP_CC_TZ__= *Etc/UTC* (or any other suitable timezone)
+  - __CVP_CC_COUNTRY__= *UK* (or any other country code that suit you)
 
 ![Environment Variables](data/ci-cd-env-vars.png)
 
@@ -287,8 +287,14 @@ Like any other change-control, you can compare result of your snapshot and see i
 
 ### Cleanup demo environment
 
-During CI/CD process, a rollback change-control is created to delete configlet from devices and applied this change to impacted devices.
-This task is not schedule, so you just have to run it to cleanup your envvironment and to be ready for next test.
+A stage is available in CI/CD workflow to manage configuration rollback and to remove configlet from server.
+To run this task, start a new pipeline with following varirable:
+
+- `CVP_ROLLBACK`=*yes*
+
+![CVP Rollback](data/rollback_ci.png)
+
+
 
 ## License
 

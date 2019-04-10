@@ -47,7 +47,7 @@ ROLLBACK_VLANS:
     - pip install git+https://github.com/titom73/configlet-cvp-uploader.git
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - chmod -R 755 .
-    - export CVP_CC_APPLY=false
+    - export CVP_CC_APPLY=true
   script:
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
     - cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
