@@ -28,8 +28,11 @@ DEPLOY_VLANS:
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
     - cvp-configlet-uploader -j configlets/customers.vlans.actions.json
   only:
+    variables:
+      - $CVP_ROLLBACK == "no"
+      - $CVP_ROLLBACK == null
     changes:
-    - group_vars/leaf/vlan_customers.yaml
+      - group_vars/leaf/vlan_customers.yaml
   artifacts:
     name: "CUSTOMERS-VLANS-DEPLOY-$CI_COMMIT_REF_NAME"
     paths:
@@ -48,5 +51,5 @@ ROLLBACK_VLANS:
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
     - cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
   only:
-    changes:
-    - group_vars/leaf/vlan_customers.yaml
+    variables:
+      - $CVP_ROLLBACK == "yes"
