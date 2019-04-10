@@ -5,3 +5,13 @@ vlan {{vlan}}
 !
 {% endfor %}
 {% endfor %}
+{% for cname, customer in customers.dict.iteritems() %}
+{% for vlan in customer.vlans %}
+interface vlan {{vlan}}
+   ip address 10.{{vlan}}.0.1/24
+!
+{% endfor %}
+{% endfor %}
+interface Ethernet1 
+   switchport mode trunk
+!
