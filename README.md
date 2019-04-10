@@ -2,18 +2,22 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Install requirements](#install-requirements)
-- [Demo step by step](#demo-step-by-step)
-    - [Configure your environment](#configure-your-environment)
-    - [Edit data](#edit-data)
-    - [Build phase](#build-phase)
-    - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
-    - [Check Result](#check-result)
-    - [(Optional) Rollback changes](#optional-rollback-changes)
-- [Demo with Continuous Integration](#demo-with-continuous-integration)
-- [License](#license)
-- [Ask question or report issue](#ask-question-or-report-issue)
-- [Contribute](#contribute)
+
+- [Demo to build config with Ansible and deploy with CVP](#demo-to-build-config-with-ansible-and-deploy-with-cvp)
+    - [Install requirements](#install-requirements)
+    - [Demo step by step](#demo-step-by-step)
+        - [Configure your environment](#configure-your-environment)
+        - [Edit data](#edit-data)
+        - [Build phase](#build-phase)
+        - [Deploy Configlet and change-control](#deploy-configlet-and-change-control)
+        - [Check Result](#check-result)
+        - [(Optional) Rollback changes](#optional-rollback-changes)
+    - [Demo with Continuous Integration](#demo-with-continuous-integration)
+        - [Execute Change with CI/CD](#execute-change-with-cicd)
+        - [Cleanup demo environment](#cleanup-demo-environment)
+    - [License](#license)
+    - [Ask question or report issue](#ask-question-or-report-issue)
+    - [Contribute](#contribute)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -235,6 +239,7 @@ Demo can be run with a CI/CD approach with no action from local laptop using any
 
 In this repository, we will provide configuration for gitlab-runners but it can be replicated on any 3rd CI tool.
 
+### Execute Change with CI/CD
 
 1. Fork the repository in your namespace
 2. Go to __settings/ci_cd__ in your project and configure __Environment Variables__:
@@ -279,6 +284,11 @@ Then you can monitor workflow execution. This workflow is a multi-stage approach
 Like any other change-control, you can compare result of your snapshot and see if change is coherent or break your network
 
 ![CloudVision Change Control](data/compare.png)
+
+### Cleanup demo environment
+
+During CI/CD process, a rollback change-control is created to delete configlet from devices and applied this change to impacted devices.
+This task is not schedule, so you just have to run it to cleanup your envvironment and to be ready for next test.
 
 ## License
 

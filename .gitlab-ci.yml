@@ -3,6 +3,7 @@ image: "inetsix/docker-ansible:latest"
 stages:
   - validate
   - deploy
+  - cleanup
 
 SYNTAX_CHECK:
   stage: validate
@@ -34,3 +35,18 @@ DEPLOY_VLANS:
     paths:
       - configlets/
       - group_vars/
+
+ROLLBACK_VLANS:
+  stage: cleanup
+  before_script:
+    - pip install -r requirements.txt
+    - pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
+    - chmod -R 755 .
+    - export CVP_CC_APPLY=false
+  script:
+    - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
+    - cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
+  only:
+    changes:
+    - group_vars/leaf/vlan_customers.yaml
