@@ -24,6 +24,7 @@ DEPLOY_VLANS:
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - chmod -R 755 .
   script:
+    - date
     - echo $PWD 
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
     - cvp-configlet-uploader -j configlets/customers.vlans.actions.json
