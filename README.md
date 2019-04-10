@@ -72,6 +72,9 @@ it is required to configure some variables first to create connection to CVP ser
 - `CVP_PROTO`: HTTP or HTTPS (set to https). If using ATD or default setup, this value should not have to be updated
 - `CVP_USER`: Your CVP username. If using ATD, this value should not have to be updated
 - `CVP_PASS`: Your CVP password. If using ATD, this value should not have to be updated
+- `CVP_CC_APPLY`: (Optional ) if set to true, change-control will be scheduling to be executed 3 minutes after its creation
+- `CVP_CC_TZ`: (optional) Timezone to schedule change-control. 
+- `CVP_CC_COUNTRY`: (optional) Country code to use in change-control scheduling
 
 Once you have updated this file, just run following command:
 
@@ -232,11 +235,18 @@ In this repository, we will provide configuration for gitlab-runners but it can 
 
 1. Fork the repository in your namespace
 2. Go to __settings/ci_cd__ in your project and configure __Environment Variables__:
+  
+  __Mandatory Entries__
   - __CVP_HOST__= *< YOUR CVP IP Address >*
   - __CVP_PORT__ = *443*
   - __CVP_PROTO__ = *https*
   - __CVP_USER__ = *arista*
   - __CVP_PASS__ = *arista*
+
+  __Optional Entries__
+  - __CVP_CC_APPLY__= *true*
+  - __CVP_CC_TZ__= *Europe/Paris* (or any other suitable timezone)
+  - __CVP_CC_COUNTRY__= *FR* (or any other country code that suit you)
 
 ![Environment Variables](data/ci-cd-env-vars.png)
 

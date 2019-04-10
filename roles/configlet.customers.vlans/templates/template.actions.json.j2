@@ -20,7 +20,13 @@
         "apply": true,
         {% if lookup('env','CVP_CC_TZ') is defined %}
         "timezone": "{{lookup('env','CVP_CC_TZ')}}",
-        "country": "Unknown"
+        {% else %}
+        "timezone": "Europe/Paris",
+        {% endif %}
+        {% if lookup('env','CVP_CC_COUNTRY') is defined %}
+        "country": "{{lookup('env','CVP_CC_COUNTRY')}}",
+        {% else %}
+        "country": "FR",
         {% endif %}
         {% else %}
         "apply": false
