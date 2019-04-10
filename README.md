@@ -256,6 +256,8 @@ In this repository, we will provide configuration for gitlab-runners but it can 
   - __CVP_CC_TZ__= *Etc/UTC* (or any other suitable timezone)
   - __CVP_CC_COUNTRY__= *UK* (or any other country code that suit you)
 
+> Note: Arista runners are configured using ETC/UTC timezone. So it is not recommended to change this setting unless you know how to fix potential issue.
+
 ![Environment Variables](data/ci-cd-env-vars.png)
 
 3. Create and run a pipeline under __pipelines__
@@ -294,7 +296,7 @@ To run this task, start a new pipeline with following varirable:
 
 ![CVP Rollback](data/rollback_ci.png)
 
-
+By default, this task is scheduled to be executed 3 minutes after you deploy this change. Hence, it is just a click and forget approach.
 
 ## License
 
