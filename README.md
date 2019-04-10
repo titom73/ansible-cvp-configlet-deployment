@@ -67,11 +67,14 @@ This demo will create a list of vlans on a set of leaf devices.
 
 it is required to configure some variables first to create connection to CVP server. All these elements are configured in file [env.settings](env.settings)
 
+__Mandatory fields:__
 - `CVP_HOST`: IP address of your CloudVision server. Should be updated to match your environment or your ATD server
 - `CVP_PORT`: CVP Port (set to 443). If using ATD or default setup, this value should not have to be updated
 - `CVP_PROTO`: HTTP or HTTPS (set to https). If using ATD or default setup, this value should not have to be updated
 - `CVP_USER`: Your CVP username. If using ATD, this value should not have to be updated
 - `CVP_PASS`: Your CVP password. If using ATD, this value should not have to be updated
+
+__Optional Field:__
 - `CVP_CC_APPLY`: (Optional ) if set to true, change-control will be scheduling to be executed 3 minutes after its creation
 - `CVP_CC_TZ`: (optional) Timezone to schedule change-control. 
 - `CVP_CC_COUNTRY`: (optional) Country code to use in change-control scheduling
@@ -266,6 +269,16 @@ Then you can monitor workflow execution. This workflow is a multi-stage approach
 ![CloudVision Change Control Creation](data/result.png)
 
 ![CloudVision Change Control](data/cvp.png)
+
+> Note: if you scheduled change-control execution, just wait 3 minutes and you will get a completed change-control
+
+5. Check changes after execution
+
+> If you did not schedule the change-control, first run this action.
+
+Like any other change-control, you can compare result of your snapshot and see if change is coherent or break your network
+
+![CloudVision Change Control](data/compare.png)
 
 ## License
 
