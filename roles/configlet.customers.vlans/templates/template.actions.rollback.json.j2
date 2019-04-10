@@ -15,6 +15,20 @@
         "name": "rollback-vlans-{{ lookup('pipe', 'date +\"%d%H%M\"')  }}",
         "type": "change-control",
         "snapid": "snapshotTemplate_9_4694793526491",
-        "apply": true
+        {% if lookup('env','CVP_CC_APPLY') is defined and lookup('env','CVP_CC_APPLY') == 'true' %}
+        "apply": true,
+        {% if lookup('env','CVP_CC_TZ') is defined %}
+        "timezone": "{{lookup('env','CVP_CC_TZ')}}",
+        {% else %}
+        "timezone": "Europe/Paris",
+        {% endif %}
+        {% if lookup('env','CVP_CC_COUNTRY') is defined %}
+        "country": "{{lookup('env','CVP_CC_COUNTRY')}}",
+        {% else %}
+        "country": "FR",
+        {% endif %}
+        {% else %}
+        "apply": false
+        {% endif %}
     }
 ]

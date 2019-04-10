@@ -17,7 +17,11 @@
         "type": "change-control",
         "snapid": "snapshotTemplate_9_4694793526491",
         {% if lookup('env','CVP_CC_APPLY') is defined and lookup('env','CVP_CC_APPLY') == 'true' %}
-        "apply": true
+        "apply": true,
+        {% if lookup('env','CVP_CC_TZ') is defined %}
+        "timezone": "{{lookup('env','CVP_CC_TZ')}}",
+        "country": "Unknown"
+        {% endif %}
         {% else %}
         "apply": false
         {% endif %}
