@@ -12,9 +12,11 @@
         ]
     },
     {
-        "name": "vlans-081306",
+        "name": "vlans-101550",
         "type": "change-control",
         "snapid": "snapshotTemplate_9_4694793526491",
-        "apply": true
+        "apply": true,
+        "timezone": "Europe/Paris",
+        "country": "FR"
     }
 ]

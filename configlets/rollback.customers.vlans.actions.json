@@ -6,15 +6,17 @@
         "configlet": "../configlets/configlet.customers.vlans.conf",
         "apply": true,
         "devices": [
-                        "leaf1",
-                        "leaf2",
-                        "leaf3"
-                    ]
+            "leaf1",
+            "leaf2",
+            "leaf3"
+        ]
     },
     {
-        "name": "rollback-vlans-081306",
+        "name": "rollback-vlans-101550",
         "type": "change-control",
         "snapid": "snapshotTemplate_9_4694793526491",
-        "apply": true
+        "apply": true,
+        "timezone": "Europe/Paris",
+        "country": "FR"
     }
 ]
