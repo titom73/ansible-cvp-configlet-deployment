@@ -23,7 +23,7 @@
 
 # Demo to build config with Ansible and deploy with CVP
 
-This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility.
+This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility. A powerpoint with a step by step is available on [drive](https://docs.google.com/presentation/d/1R3vcBFbUpEl2sIABgNjPNTWNXU1tCkxv6rLzg84nDIo/edit?usp=sharing)
 
 ![High level Workflow](data/intro.png)
 
