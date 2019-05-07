@@ -20,14 +20,14 @@ DEPLOY_VLANS:
   stage: deploy
   before_script:
     - pip install -r requirements.txt
-    - pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - chmod -R 755 .
   script:
     - date
     - echo $PWD 
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
-    - cvp-configlet-uploader -j configlets/customers.vlans.actions.json
+    - cvp-configlet-manager -j configlets/customers.vlans.actions.json
   only:
     variables:
       - $CVP_ROLLBACK == "no"
@@ -44,13 +44,13 @@ ROLLBACK_VLANS:
   stage: cleanup
   before_script:
     - pip install -r requirements.txt
-    - pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - chmod -R 755 .
     - export CVP_CC_APPLY=true
   script:
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
-    - cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
+    - cvp-configlet-manager -j configlets/rollback.customers.vlans.actions.json
   only:
     variables:
       - $CVP_ROLLBACK == "yes"
