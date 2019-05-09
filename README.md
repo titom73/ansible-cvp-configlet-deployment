@@ -1,3 +1,6 @@
+![Project License](https://img.shields.io/github/license/titom73/ansible-cvp-configlet-deployment.svg)
+
+![GitHub top language](https://img.shields.io/github/languages/top/titom73/ansible-cvp-configlet-deployment.svg)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,7 +24,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Demo to build config with Ansible and deploy with CVP
+# Demo to build static configlets with Ansible and deploy with CVP
 
 This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility. A powerpoint with a step by step is available on [drive](https://docs.google.com/presentation/d/1R3vcBFbUpEl2sIABgNjPNTWNXU1tCkxv6rLzg84nDIo/edit?usp=sharing)
 
@@ -31,7 +34,7 @@ This demo has been built using these requirements:
 
 - [Ansible framework](https://docs.ansible.com) for template management.
 - [CVP Configlet Manager](https://github.com/titom73/arista-cvp-scripts) to deploy configlet on CVP.
-- Arista Demo Cloud ATD to provide Cloudvision server and EOS endpoints.
+- Arista Demo Cloud to provide Cloudvision server and EOS endpoints.
 
 > In this demo, __Ansible__ only provides a basic jinja2 rendering with one group and very basic content. So you can basically change __ansible__ content by any tools / __python__ scripts to generate your content as long as output is similar to what we describe below.
 
@@ -237,7 +240,7 @@ $ cvp-configlet-uploader -j configlets/rollback.customers.vlans.actions.json
 
 Demo can be run with a CI/CD approach with no action from local laptop using any runners like gitlab-runners, travisci or Jenkins.
 
-In this repository, we will provide configuration for gitlab-runners but it can be replicated on any 3rd CI tool.
+In this repository, we will provide configuration for gitlab-runners but it can be replicated on any 3rd part CI tool like [Jenkins](https://jenkins.io/) or [tracis-ci](https://travis-ci.org/)
 
 ### Execute Change with CI/CD
 
