@@ -1,4 +1,4 @@
-image: "inetsix/runner-python:2-alpine"
+image: "inetsix/runner-python:2"
 
 stages:
   - code_quality
