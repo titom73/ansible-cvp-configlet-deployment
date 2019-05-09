@@ -1,4 +1,4 @@
-image: "inetsix/runner-python:2"
+image: "inetsix/runner-python:2.7"
 
 stages:
   - code_quality
