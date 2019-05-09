@@ -24,7 +24,7 @@ linting:ansible:
     - master
 
 deploy:vlan:
-  <<: cvp_tasks
+  <<: *cvp_tasks
   stage: deploy
   script:
     - date
@@ -44,7 +44,7 @@ deploy:vlan:
       - group_vars/
 
 deploy:rollback:
-  <<: cvp_tasks
+  <<: *cvp_tasks
   stage: cleanup
   script:
     - export CVP_CC_APPLY=true
