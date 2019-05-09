@@ -1,12 +1,19 @@
-image: "inetsix/docker-ansible:latest"
+image: "inetsix/runner-python:2-alpine"
 
 stages:
-  - validate
+  - code_quality
   - deploy
   - cleanup
 
-SYNTAX_CHECK:
-  stage: validate
+.cvp_python: &cvp_tasks
+  before_script:
+    - pip install -r requirements.txt
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
+    - chmod -R 755 .
+
+linting:ansible:
+  stage: code_quality
   before_script:
     - pip install -r requirements.txt
     - chmod -R 755 .
@@ -16,13 +23,9 @@ SYNTAX_CHECK:
   only:
     - master
 
-DEPLOY_VLANS:
+deploy:vlan:
+  <<: cvp_tasks
   stage: deploy
-  before_script:
-    - pip install -r requirements.txt
-    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
-    - chmod -R 755 .
   script:
     - date
     - echo $PWD 
@@ -40,15 +43,11 @@ DEPLOY_VLANS:
       - configlets/
       - group_vars/
 
-ROLLBACK_VLANS:
+deploy:rollback:
+  <<: cvp_tasks
   stage: cleanup
-  before_script:
-    - pip install -r requirements.txt
-    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
-    - chmod -R 755 .
-    - export CVP_CC_APPLY=true
   script:
+    - export CVP_CC_APPLY=true
     - ansible-playbook playbook.build.customers.vlans.yml -i inventory.ini
     - cvp-configlet-manager -j configlets/rollback.customers.vlans.actions.json
   only:
