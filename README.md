@@ -30,7 +30,7 @@ This content demonstrate how to use ansible to build configlet for devices and C
 This demo has been built using these requirements:
 
 - [Ansible framework](https://docs.ansible.com) for template management.
-- [CVP Configlet Uploader](https://github.com/titom73/configlet-cvp-uploader) to deploy configlet on CVP.
+- [CVP Configlet Manager](https://github.com/titom73/arista-cvp-scripts) to deploy configlet on CVP.
 - Arista Demo Cloud ATD to provide Cloudvision server and EOS endpoints.
 
 > In this demo, __Ansible__ only provides a basic jinja2 rendering with one group and very basic content. So you can basically change __ansible__ content by any tools / __python__ scripts to generate your content as long as output is similar to what we describe below.
@@ -40,7 +40,7 @@ Ansible content will do 3 different tasks:
 - Create a `JSON` file to deploy this configlet (assuming it is a new configlet).
 - Create a `JSON` file to manage manual rollback after the demo.
 
-Once Ansible has generated content, [`cvp-configlet-uploader`](https://github.com/titom73/configlet-cvp-uploader) has to be use to deploy `configlet` and create a `change-control`
+Once Ansible has generated content, [`cvp-configlet-manager`](https://github.com/titom73/arista-cvp-scripts) has to be use to deploy `configlet` and create a `change-control`
 
 ## Install requirements
 
@@ -56,7 +56,7 @@ $ pip install -r requirements.txt
 $ pip install git+https://github.com/aristanetworks/cvprac.git@develop
 
 # Python script to upload configlet & create change-control
-$ pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+$ pip install git+https://github.com/titom73/arista-cvp-scripts.git
 ```
 
 > In the meantime, you have to build your own topology with a CVP server or rely on an Test Drive. 
@@ -164,7 +164,7 @@ $ tree -L 2
 Once content has been created, you can use cvp-configlet-uploader to deploy content to CloudVision:
 
 ```shell
-$ cvp-configlet-uploader -j configlets/customers.vlans.actions.json   
+$ cvp-configlet-manager -j configlets/customers.vlans.actions.json   
 
 --------------------
 
