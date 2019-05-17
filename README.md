@@ -26,6 +26,14 @@
 
 This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility. A powerpoint with a step by step is available on [drive](https://docs.google.com/presentation/d/1R3vcBFbUpEl2sIABgNjPNTWNXU1tCkxv6rLzg84nDIo/edit?usp=sharing)
 
+Using CVP to deploy configlet to devices give us some more interesting opportunity:
+
+- Everything is available in telemetry: your changes can be correlate with status returned by your devices
+- CVP will create tasks and calculate diff to apply to running config. And it is easily readable within CVP interface.
+- CVP will provide an RBAC mechanism which is not available natively with Ansible.
+- And last but not least: CVP can act as a management gateway with no need to expose all your devices
+
+
 ![High level Workflow](data/intro.png)
 
 This demo has been built using these requirements:
