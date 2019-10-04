@@ -1,5 +1,7 @@
 ![GitHub](https://img.shields.io/github/license/titom73/ansible-cvp-configlet-deployment.svg) ![GitHub top language](https://img.shields.io/github/languages/top/titom73/ansible-cvp-configlet-deployment.svg)
 
+__Warning__: An [ansible-cvp](https://github.com/aristanetworks/ansible-cvp) module is developed by Arista and will provide more feature than this demo repository.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -24,7 +26,7 @@
 
 # Demo to build static configlets with Ansible and deploy with CVP
 
-This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility. A powerpoint with a step by step is available on [drive](https://docs.google.com/presentation/d/1R3vcBFbUpEl2sIABgNjPNTWNXU1tCkxv6rLzg84nDIo/edit?usp=sharing)
+This content demonstrate how to use ansible to build configlet for devices and CVP to deploy changes with control and visibility.
 
 Using CVP to deploy configlet to devices give us some more interesting opportunity:
 
