@@ -1,6 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/titom73/ansible-cvp-configlet-deployment.svg) ![GitHub top language](https://img.shields.io/github/languages/top/titom73/ansible-cvp-configlet-deployment.svg)
 
-__Warning__: An [ansible-cvp](https://github.com/aristanetworks/ansible-cvp) module is developed by Arista and will provide more feature than this demo repository.
+__Warning__ - __REPO DEPRECATED__, an [ansible-cvp](https://github.com/aristanetworks/ansible-cvp) module is developed by Arista and will provide more feature than this demo repository.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
